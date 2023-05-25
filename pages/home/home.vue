@@ -69,7 +69,6 @@
 			
 			async getFloor(){
 				const {data: reslut} = await uni.$http.get('api/public/v1/home/floordata')
-				console.log(reslut)
 				if (reslut.meta.status === 200) {
 					reslut.message.forEach(item => {
 						item.product_list.forEach(pro => {
