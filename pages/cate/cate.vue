@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<MySearch></MySearch>
 		<view class="scroll-view-container">
 			<scroll-view class="left_view" scroll-y="true" :style="{height: hei + 'px'}">
 				<view class="left_item" v-for="(item, index) in cateList" :key="index" :class="{active: index === active}" @click="changCate(index)" >
@@ -8,14 +9,14 @@
 			</scroll-view>
 			
 			<scroll-view class="right_view" scroll-y="true" :style="{height: hei + 'px'}" :scroll-top="scrollTop">
-				<view class="right_main" v-for="(item, index) in levelList" :key="index">
+				<view class="right_main" v-for="item1 in levelList" :key="item1.cat_id">
 					<view class="right_top">
-						{{item.cat_name}}
+						{{item1.cat_name}}
 					</view>
 					<view class="right_cont">
-						<view class="right_item" v-for="(item1, index) in item.children" :key="index" @click="gotoList(item1)">
-							<img :src="item1.cat_icon">
-							<p>{{item1.cat_name}}</p>
+						<view class="right_item" v-for="item2 in item1.children" :key="item2.cat_id" @click="gotoList(item2)">
+							<img :src="item2.cat_icon">
+							<p>{{item2.cat_name}}</p>
 						</view>
 					</view>
 				</view>
@@ -47,7 +48,6 @@
 				if (reslut.meta.status === 200) {
 					this.cateList = reslut.message
 					this.levelList = reslut.message[0].children
-					console.log(this.levelList)
 				} else {
 					return uni.$showMsg()
 				}
@@ -61,7 +61,7 @@
 			
 			gotoList(item){
 				uni.navigateTo({
-					url: '/subpackage/goods_list/goods_list?' + item.cat_id
+					url: '/subpackage/goods_list/goods_list?cid=' + item.cat_id
 				})
 			}
 		}
@@ -106,6 +106,7 @@
 	.right_view{
 		flex: 1;
 		margin: 0 10rpx;
+		box-sizing: border-box;
 		
 		.right_main{
 			width: 100%;

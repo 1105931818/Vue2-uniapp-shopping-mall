@@ -1,5 +1,6 @@
 <template>
 	<view>
+		<MySearch></MySearch>
 		<swiper class="home_swiper" indicator-dots="true" autoplay="true" circular="true" interval="2500" duration="700">
 			<swiper-item v-for="item in swiperList" :key="item.goods_id">
 				<navigator class="nav" :url="`/subpackage/goods_detail/goods_detail?goods_id=${item.goods_id}`">

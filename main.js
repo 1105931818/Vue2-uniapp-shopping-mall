@@ -3,6 +3,9 @@ import App from './App'
 // #ifndef VUE3
 import Vue from 'vue'
 import './uni.promisify.adaptor'
+import MySearch from './components/my-search/my-search.vue'
+import './uni_modules/uni-icons/components/uni-icons/icons.js'
+import 'uni_modules/uni-search-bar/components/uni-search-bar/i18n/index.js'
 
 // 导入网络请求的包
 import {$http} from '@escook/request-miniprogram'
@@ -31,6 +34,7 @@ uni.$showMsg = (title = '数据加载失败！', duration = 1500) => {
 	})
 }
 
+Vue.component('MySearch', MySearch)
 
 Vue.config.productionTip = false
 App.mpType = 'app'
