@@ -105,7 +105,7 @@
 <style lang="scss" scoped>
 .search_box{
 	width: 100%;
-	height: 95rpx;
+	height: 110rpx;
 	background-color: #ff4800;
 	position: sticky;
 	top: 0;
@@ -122,6 +122,7 @@
 
 .history{
 	width: 100%;
+	margin-top: 15rpx;
 	
 	.his_title{
 		width: 95%;

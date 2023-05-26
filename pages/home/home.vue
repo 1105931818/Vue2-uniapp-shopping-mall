@@ -36,6 +36,7 @@
 </template>
 
 <script>
+	import mixin from '@/mixins/tabbar-badge.js'
 	export default {
 		data() {
 			return {
@@ -49,6 +50,9 @@
 			this.getNav()
 			this.getFloor()
 		},
+		mixins:[
+			mixin
+		],
 		methods: {
 			async getSwiper(){
 				const {data: reslut} = await uni.$http.get('api/public/v1/home/swiperdata')
@@ -126,7 +130,7 @@
 	
 	.nav_item{
 		width: 18%;
-		height: 100%;
+		height: 95%;
 		box-sizing: border-box;
 		
 		img{
@@ -140,6 +144,7 @@
 	width: 95%;
 	margin: auto;
 	margin-top: 10rpx;
+	padding-bottom: 10rpx;
 	
 	
 	.floor_top{

@@ -1,6 +1,6 @@
 <template>
 	<view class="goodlist">
-		<MyItem v-for="(item, index) in goodslist" :key="index" :item="item" @click="gotoDetail(item)"></MyItem>
+		<MyItem v-for="(item, index) in goodslist" :key="index" :item="item" @goto-click="gotoDetail(item)"></MyItem>
 	</view>
 </template>
 
@@ -71,7 +71,7 @@
 <style lang="scss" scoped>
 .goodlist{
 	width: 100%;
-	padding-top: 20rpx;
+	padding-top: 1rpx;
 	background-color: #efefef;
 }
 </style>

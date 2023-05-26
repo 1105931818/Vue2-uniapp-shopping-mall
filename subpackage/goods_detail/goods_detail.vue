@@ -31,6 +31,8 @@
 </template>
 
 <script>
+	import { mapMutations, mapGetters } from 'vuex'
+	
 	export default {
 		data() {
 			return {
@@ -64,11 +66,32 @@
 				]
 			}
 		},
+		computed: {
+			...mapGetters('cartOptions', ['total'])
+		},
 		onLoad(option){
 			const id = option.goods_id
 			this.getGoodinfo(id)
+			// this.options[2].info = this.total
+			// const finds = this.options.find(x => x.text === '购物车')
+			// if(finds){
+			// 	finds.info = this.total
+			// }
+		},
+		watch:{
+			total: {
+				immediate: true,
+				handler(value){
+					const finds = this.options.find(x => x.text === '购物车')
+					if(finds){
+						finds.info = value
+					}
+				}
+			}
 		},
 		methods: {
+			...mapMutations('cartOptions', ['addCart']),
+			
 			async getGoodinfo(id){
 				const {data: result} = await uni.$http.get('api/public/v1/goods/detail',{ goods_id: id })
 				if(result.meta.status === 200){
@@ -95,9 +118,21 @@
 			},
 			
 			buttonClick(e){
-				console.log(e)
-				this.options[2].info += 1
+				
+				if(e.content.text === '加入购物车'){
+					const goods = {
+						goods_id: this.goodInfo.goods_id,
+						goods_name: this.goodInfo.goods_name,
+						goods_price: this.goodInfo.goods_price,
+						goods_count: 1,
+						goods_small_logo: this.goodInfo.goods_small_logo,
+						goods_state: true
+					}
+					
+					this.addCart(goods)
+				}
 			}
+			
 			
 		}
 	}
@@ -143,6 +178,9 @@
 		.msg_left{
 			flex: 1;
 			height: 100%;
+			white-space: nowrap;
+			overflow: hidden;
+			text-overflow: ellipsis;
 		}
 		
 		.msg_right{
@@ -169,7 +207,7 @@
 
 
 .goods_cart{
-	height: 110rpx;
+	height: 120rpx;
 	background-color: white;
 	padding-top: 10rpx;
 	display: flex;

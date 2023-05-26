@@ -26,6 +26,7 @@
 </template>
 
 <script>
+	import mixin from '@/mixins/tabbar-badge.js'
 	export default {
 		data() {
 			return {
@@ -36,6 +37,9 @@
 				scrollTop: 0
 			};
 		},
+		mixins: [
+				mixin
+		],
 		mounted(){
 			const sysInfo = uni.getSystemInfoSync()
 			this.hei = sysInfo.windowHeight

@@ -1,9 +1,18 @@
 <template>
 	<view class="good_main" @click="gotoDetail">
-		<img :src="item.goods_big_logo || ''">
+		<view class="min">
+			<radio :checked="item.goods_state" color="#ff4800" v-if="showRadio" style="margin-left: 5rpx;" @click="Detail(item)"></radio>
+			<img :src="item.goods_big_logo || item.goods_small_logo">
+		</view>
 		<view class="good_item">
 			<span>{{item.goods_name || ''}}</span>
-			<p>¥ {{item.goods_price | tofixed}}</p>
+			<view class="price">
+				<p>¥{{item.goods_price | tofixed}} </p>
+				
+				<uni-number-box v-if="showNum" :min="1" :value="item.goods_count" @change="bindChange"></uni-number-box>
+				
+			</view>
+			
 		</view>
 	</view>
 </template>
@@ -12,9 +21,17 @@
 	export default {
 		name:"my-item",
 		props: {
-			item:{
+			item: {
 				type: Object,
 				default: {}
+			},
+			showRadio: {
+				type: Boolean,
+				default: false
+			},
+			showNum: {
+				type: Boolean,
+				default: false
 			}
 		},
 		data() {
@@ -29,7 +46,15 @@
 		},
 		methods:{
 			gotoDetail(){
-				this.$emit('click')
+				this.$emit('goto-click')
+			},
+			
+			Detail(item){
+				this.$emit('click', { goods_id: this.item.goods_id, goods_state: !this.item.goods_state })
+			},
+			
+			bindChange(e){
+				this.$emit('change', {num: e - 0, goods_id: this.item.goods_id})
 			}
 		}
 	}
@@ -39,20 +64,27 @@
 
 .good_main{
 	width: 95%;
-	height: 280rpx;
+	height: 260rpx;
 	background-color: white;
-	margin: auto;
-	margin-bottom: 20rpx;
+	margin: 20rpx auto;
 	padding: 0;
 	display: flex;
 	box-shadow: 1rpx 1rpx 10rpx rgb(156, 156, 156);
 	border-radius: 8rpx;
-	img{
-		width: 240rpx;
-		height: 230rpx;
-		margin-right: 30rpx;
-		margin-top: 20rpx;
-		margin-left: 20rpx;
+	
+	.min{
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-left: 10rpx;
+		margin-right: 10rpx;
+		
+		img{
+			width: 180rpx;
+			height: 180rpx;
+			
+			
+		}
 	}
 		
 	.good_item{
@@ -61,15 +93,32 @@
 		display: flex;
 		flex-direction: column;
 		justify-content: space-between;
+		
 			
 			span{
-				font-size: 28rpx;
+				display: block;
+				width: 100%;
+				height: 145rpx;
+				font-size: 22rpx;
+				white-space: wrap;
+				overflow: hidden;
+				text-overflow: ellipsis;
+				
 			}
 			
-			p{
-				font-size: 32rpx;
-				color: #ff3523;
-				font-weight: 700;
+			.price{
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: center;
+				
+				p{
+					font-size: 28rpx;
+					color: #ff3523;
+					font-weight: 700;
+					position: relative;
+				}
+				
 			}
 		}
 	}
