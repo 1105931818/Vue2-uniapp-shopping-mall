@@ -47,6 +47,9 @@
 				uni.chooseAddress({
 					success: (res) => {
 						this.updetaAddress(res)
+					},
+					fail: (res) => {
+						return uni.$showMsg('为选择地址')
 					}
 				})
 				

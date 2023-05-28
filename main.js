@@ -12,6 +12,8 @@ import 'uni_modules/uni-goods-nav/components/uni-goods-nav/i18n/index.js'
 import MyItem from './components/my-item/my-item.vue'
 import MyAddress from './components/my-address/my-address.vue'
 import MySettle from './components/my-settle/my-settle.vue'
+import MyLogin from './components/my-login/my-login.vue'
+import MyUser from './components/my-userinfo/my-userinfo.vue'
 // import mixin from './mixins/tabbar-badge.js'
 
 
@@ -28,6 +30,12 @@ $http.beforeRequest = function(options){
 	uni.showLoading({
 		title: '数据加载中...'
 	})
+	
+	if(options.url.indexOf('/my/') !== -1){
+		options.header = {
+			Authorization: store.state.userOptions.token
+		}
+	}
 }
 
 // 响应拦截
@@ -47,6 +55,8 @@ Vue.component('MySearch', MySearch)
 Vue.component('MyItem', MyItem)
 Vue.component('MyAddress', MyAddress)
 Vue.component('MySettle', MySettle)
+Vue.component('MyLogin', MyLogin)
+Vue.component('MyUser', MyUser)
 // Vue.mixin(mixin)
 
 

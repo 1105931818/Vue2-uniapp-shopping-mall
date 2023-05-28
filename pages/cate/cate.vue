@@ -81,6 +81,7 @@
 	.left_view{
 		width: 220rpx;
 		background-color: #f6f6f6;
+		font-size: 26rpx;
 		
 		.left_item{
 			width: 100%;
