@@ -8,3 +8,5 @@
 <img width="300" alt="image" src="https://github.com/1105931818/Vue2-uniapp-shopping-mall/assets/96091665/caf3e6ff-133e-4701-b71f-24c420751baf">
 <img width="300" alt="image" src="https://github.com/1105931818/Vue2-uniapp-shopping-mall/assets/96091665/b42e9629-9c87-4d27-9851-8ddfa89b4b3e">
 <img width="300" alt="image" src="https://github.com/1105931818/Vue2-uniapp-shopping-mall/assets/96091665/87d16406-63e5-417d-ad8b-f9b1896c2d6d">
+<img width="385" alt="image" src="https://github.com/1105931818/Vue2-uniapp-shopping-mall/assets/96091665/20b7a8d8-8742-4fe6-a42d-81e2b31a882c">
+<img width="383" alt="image" src="https://github.com/1105931818/Vue2-uniapp-shopping-mall/assets/96091665/aa76caa8-517d-4bab-a376-9898b5e785fe">
